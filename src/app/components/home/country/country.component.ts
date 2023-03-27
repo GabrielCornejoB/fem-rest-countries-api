@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Country } from 'src/app/types/Country';
 
 @Component({
   selector: 'app-country',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./country.component.sass']
 })
 export class CountryComponent {
-
+  @Input() country: Country = {} as Country;
 }

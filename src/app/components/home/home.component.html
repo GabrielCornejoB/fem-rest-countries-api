@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="home-container">
+    <div class="filters">
+        <div class="filter search">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Search for a country...">
+        </div>
+        <div class="filter dropdown">
+            <p>Filter by Region</p>
+            <span class="material-symbols-outlined">expand_more</span>
+        </div>
+    </div>
+    <div class="countries">
+        <ng-container *ngFor="let country of countries">
+            <app-country [country]="country"></app-country>
+        </ng-container>     
+    </div>
+</div>
