@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   countries: Country[] = [];
   _filterText: string = "";
   filteredCountries: Country[] = [];
+  _selectedRegion: string = "";
+  activeDropDown: boolean = false;
 
   constructor(private countriesServices: CountriesService) {}
 
@@ -23,9 +25,34 @@ export class HomeComponent implements OnInit {
     this.filteredCountries = this.filterCountries(value);
   }
 
+  get selectedRegion() {
+    return this._selectedRegion;
+  }
+  set selectedRegion(value: string) {
+    this._selectedRegion = value;
+    this.filteredCountries = this.filterByRegion(value);
+  }
+
   ngOnInit(): void {
     this.getCountries();
     this.filteredCountries = this.countries;
+  }
+
+  selectRegion(region: string) {
+    this.selectedRegion = region;
+    this.activeDropDown = false;
+    this.filterByRegion(region);
+  }
+
+  filterByRegion(region: string) {
+    if (this.countries.length == 0 || region == '') {
+      return this.countries;
+    }
+    else {
+      return this.countries.filter((country) => {
+        return country.region.toLowerCase() == region.toLowerCase();
+      });
+    }
   }
 
   filterCountries(filter: string) {

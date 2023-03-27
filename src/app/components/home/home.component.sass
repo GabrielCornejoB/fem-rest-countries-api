@@ -10,33 +10,67 @@
         justify-content: space-between
         width: 90%
         margin: 50px 0
-        .filter
+        .search   
             display: flex
             flex-direction: row
             align-items: center
+            justify-content: center
             background: var(--elements-color)  
             box-shadow: 0 1px 4px rgba(0, 0, 0, 12.5%)
-            border-radius: 5px
-        .search      
-            width: 450px
-            padding: 15px 30px
+            border-radius: 5px   
+            width: 500px
+            height: 50px
             span
                 color: var(--input-txt-color)
                 margin: 0
-                padding-right: 15px
+                padding: 0 10px
             input
                 width: 90%
                 border: none
                 font-size: 1rem
                 outline: none
         .dropdown
-            padding: 15px 20px
-            justify-content: space-between
-            width: 160px
-            cursor: pointer
-            span
-                margin: 0
-
+            display: flex
+            flex-direction: column
+            position: relative
+            .selected
+                top: 0
+                left: 0
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: center
+                background: var(--elements-color)
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 12.5%)
+                border-radius: 5px
+                width: 220px
+                height: 50px
+                cursor: pointer
+                input
+                    border: none
+                    cursor: pointer
+                    outline: none
+                span
+                    margin: 0
+                &:hover
+                    background: var(--hover-color)
+                    input
+                        background: var(--hover-color)
+            .options
+                position: absolute
+                display: flex
+                flex-direction: column
+                width: 220px
+                background: var(--elements-color)
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 12.5%)
+                border-radius: 5px
+                top: 60px     
+                box-sizing: border-box
+                cursor: pointer
+                .option
+                    padding: 7.5px 20px
+                    &:hover
+                        background: var(--hover-color)
     .countries
         width: 90%
         display: grid

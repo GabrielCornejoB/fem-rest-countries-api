@@ -1,12 +1,22 @@
 <div class="home-container">
     <div class="filters">
-        <div class="filter search">
+        <div class="search">
             <span class="material-symbols-outlined">search</span>
             <input type="text" placeholder="Search for a country..." [(ngModel)]="filterText">
         </div>
-        <div class="filter dropdown">
-            <p>Filter by Region</p>
-            <span class="material-symbols-outlined">expand_more</span>
+        <div class="dropdown">
+            <div class="selected" (click)="activeDropDown = !activeDropDown">
+                <input type="text" placeholder="Filter by region" [(ngModel)]="selectedRegion" readonly>
+                <span class="material-symbols-outlined">expand_more</span>
+            </div>           
+            <div class="options" *ngIf="activeDropDown">
+                <div (click)="selectRegion('')" class="option">All regions</div>
+                <div (click)="selectRegion('Africa')" class="option">Africa</div>
+                <div (click)="selectRegion('Americas')" class="option">America</div>
+                <div (click)="selectRegion('Asia')" class="option">Asia</div>
+                <div (click)="selectRegion('Europe')" class="option">Europe</div>
+                <div (click)="selectRegion('Oceania')" class="option">Oceania</div>
+            </div>
         </div>
     </div>
     <div class="countries">
