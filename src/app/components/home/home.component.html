@@ -2,7 +2,7 @@
     <div class="filters">
         <div class="filter search">
             <span class="material-symbols-outlined">search</span>
-            <input type="text" placeholder="Search for a country...">
+            <input type="text" placeholder="Search for a country..." [(ngModel)]="filterText">
         </div>
         <div class="filter dropdown">
             <p>Filter by Region</p>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="countries">
-        <ng-container *ngFor="let country of countries">
+        <ng-container *ngFor="let country of filteredCountries">
             <app-country [country]="country"></app-country>
         </ng-container>     
     </div>

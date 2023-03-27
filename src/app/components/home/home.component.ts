@@ -10,11 +10,33 @@ import { CountriesService } from './countries.service';
 export class HomeComponent implements OnInit {
 
   countries: Country[] = [];
+  _filterText: string = "";
+  filteredCountries: Country[] = [];
 
   constructor(private countriesServices: CountriesService) {}
 
+  get filterText() {
+    return this._filterText;
+  }
+  set filterText(value: string) {
+    this._filterText = value;
+    this.filteredCountries = this.filterCountries(value);
+  }
+
   ngOnInit(): void {
     this.getCountries();
+    this.filteredCountries = this.countries;
+  }
+
+  filterCountries(filter: string) {
+    if (this.countries.length == 0 || filter == '') {
+      return this.countries;
+    }
+    else {
+      return this.countries.filter((country) => {
+        return country.name.toLowerCase().startsWith(filter.toLowerCase());
+      });
+    }
   }
 
   getCountries(): void {
