@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+body
+    --text-color: hsl(200, 15%, 8%)
+    --input-txt-color: hsl(0, 0%, 52%)
+    --bg-color: hsl(0, 0%, 98%)
+    --elements-color: hsl(0, 0%, 100%)
+    --hover-color: hsl(0, 0%, 96%)
+body.dark-theme
+    --text-color: hsl(0, 0%, 100%)
+    --input-txt-color: hsl(0, 0%, 100%)
+    --bg-color: hsl(207, 26%, 17%)
+    --elements-color: hsl(209, 23%, 22%)
+
+*
+    margin: 0
+    padding: 0
+    font-family: 'Nunito Sans', sans-serif
+html
+    font-size: 16px
+body
+    background: var(--bg-color)   
+h1, p
+    color: var(--text-color)
+h1
+    font-size: 1.5rem
+    font-weight: 800
+input
+    color: var(--input-txt-color)
+
+.material-symbols-outlined 
+    font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0,'opsz' 48
+    font-size: 1.5rem
+    height: 1.5rem
+    margin-right: 0.5rem
