@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
   set filterText(value: string) {
     this._filterText = value;
-    this.filteredCountries = this.filterCountries(value);
+    this.filteredCountries = this.filterCountries(value, this.selectedRegion);
   }
 
   get selectedRegion() {
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
   set selectedRegion(value: string) {
     this._selectedRegion = value;
-    this.filteredCountries = this.filterByRegion(value);
+    this.filteredCountries = this.filterCountries(this.filterText, value);
   }
 
   ngOnInit(): void {
@@ -41,27 +41,26 @@ export class HomeComponent implements OnInit {
   selectRegion(region: string) {
     this.selectedRegion = region;
     this.activeDropDown = false;
-    this.filterByRegion(region);
   }
 
-  filterByRegion(region: string) {
-    if (this.countries.length == 0 || region == '') {
+  filterCountries(filter: string, region: string): Country[] {
+    if (this.countries.length == 0) return this.countries;
+    else if (filter == '' && this.selectedRegion == '') {
       return this.countries;
     }
-    else {
+    else if (filter == '' && this.selectedRegion != '') {
       return this.countries.filter((country) => {
         return country.region.toLowerCase() == region.toLowerCase();
       });
     }
-  }
-
-  filterCountries(filter: string) {
-    if (this.countries.length == 0 || filter == '') {
-      return this.countries;
+    else if (filter != '' && this.selectedRegion == '') {
+      return this.countries.filter((country) => {   
+        return country.name.toLowerCase().startsWith(filter.toLowerCase());
+      });
     }
     else {
       return this.countries.filter((country) => {
-        return country.name.toLowerCase().startsWith(filter.toLowerCase());
+        return country.name.toLowerCase().startsWith(filter.toLowerCase()) && country.region.toLowerCase() == region.toLowerCase();
       });
     }
   }
@@ -69,7 +68,6 @@ export class HomeComponent implements OnInit {
   getCountries(): void {
     this.countriesServices.getCountries().subscribe({
       next: (d) => {
-        console.log(d);
         for(let country of d) {
           try {
             this.countries.push({
@@ -86,6 +84,5 @@ export class HomeComponent implements OnInit {
       },
       error: (e) => console.log(e)
     });
-    console.log(this.countries);
   }
 }
