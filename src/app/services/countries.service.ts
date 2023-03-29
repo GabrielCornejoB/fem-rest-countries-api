@@ -14,4 +14,7 @@ export class CountriesService {
   getCountries(): Observable<any[]> {
     return this.http.get<Country[]>(this.URL + "all");
   }
+  getCountryById(id: string): Observable<any> {
+    return this.http.get<Country>(this.URL + "alpha/" + id);
+  }
 }

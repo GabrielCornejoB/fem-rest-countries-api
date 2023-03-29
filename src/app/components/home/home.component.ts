@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CountriesService } from 'src/app/services/countries.service';
 import { Country } from 'src/app/types/Country';
-import { CountriesService } from './countries.service';
 
 @Component({
   selector: 'app-home',
@@ -69,17 +69,14 @@ export class HomeComponent implements OnInit {
     this.countriesServices.getCountries().subscribe({
       next: (d) => {
         for(let country of d) {
-          try {
-            this.countries.push({
-              name: country.name.common,
-              population: country.population,
-              region: country.region,
-              capital: country.capital[0],
-              flag: country.flags.png
-            });
-          } catch (error) {
-            console.log(country);
-          }             
+          this.countries.push({
+            code: country.cca2,
+            name: country.name.common,
+            population: country.population,
+            region: country.region,
+            capital: country.capital ? country.capital[0] : "n/a",
+            flag: country.flags.png
+          });          
         }
       },
       error: (e) => console.log(e)

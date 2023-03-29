@@ -1,1 +1,23 @@
-<p>detail works!</p>
+<div class="detail-container">
+    <div class="upper-section">
+        <a routerLink="/home"><span class="material-symbols-outlined">keyboard_backspace</span> Back</a>
+    </div>
+    <div class="content">
+        <img src="{{country.flag}}" alt="flag">
+        <div class="info">
+            <h1>{{country.name}}</h1>
+            <div class="data">
+                <p><b>Official Name: </b>{{country.officialName}}</p>
+                <p><b>Top Level Domain: </b>{{country.tld?.join(', ')}}</p>
+                <p><b>Population: </b>{{country.population}}</p>
+                <p><b>Currencies: </b>{{country.currencies?.join(', ')}}</p>
+                <p><b>Region: </b>{{country.region}}</p>
+                <p><b>Languages: </b>{{country.languages?.join(', ')}}</p>
+                <p><b>Sub Region: </b>{{country.subregion}}</p>
+                <span></span>
+                <p><b>Capital: </b>{{country.capital}}</p>  
+            </div>      
+            <p><b>Border Countries: </b>{{country.borderCountries?.join(', ')}}</p>
+        </div>
+    </div>
+</div>

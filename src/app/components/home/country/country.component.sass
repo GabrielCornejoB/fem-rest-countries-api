@@ -8,6 +8,11 @@
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 12.5%)
     overflow: hidden
     margin: 0
+    text-decoration: none
+    cursor: pointer 
+    &:hover
+        .content
+            background: var(--hover-color)
     img
         width: 100%
         height: 50%
@@ -16,6 +21,7 @@
         padding: 20px 30px
         box-sizing: border-box
         color: var(--text-color)
+        // transition: 0.4s
         h2
             font-size: 1.25rem
             font-weight: 800
